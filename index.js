@@ -14,19 +14,20 @@ app.use(express.urlencoded({ extended: false }))
 app.get('/', (req, res) => {
   return res.render('age')
 })
+var age
 
 app.get('/major', (req, res) => {
-  return res.render('major')
+  return res.render('major', { age })
 })
 
 app.get('/minor', (req, res) => {
-  return res.render('minor')
+  return res.render('minor', { age })
 })
 
 app.post('/check', (req, res) => {
   console.log(req.body)
-
-  if (req.body.age >= 18) {
+  age = req.body.age
+  if (age >= 18) {
     res.redirect('/major')
   } else {
     res.redirect('/minor')
