@@ -7,5 +7,11 @@ nunjucks.configure('views', {
   express: app,
   watch: true
 })
+app.set('view engine', 'njk')
+app.use(express.urlencoded({ extended: false }))
+
+app.get('/', (req, res) => {
+  return res.render('age')
+})
 
 app.listen(3000)
